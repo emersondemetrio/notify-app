@@ -7,5 +7,11 @@ notifyApp
 			controller: 'IndexCtrl'
 		});
 
+		$stateProvider.state('notifications', {
+			url: '/notifications',
+			templateUrl: '/templates/notifications.html',
+			controller: 'NotificationsCtrl'
+		});
+
 		$urlRouterProvider.otherwise('/index');
 	});

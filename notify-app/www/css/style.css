@@ -1,3 +1,7 @@
+ion-content {
+	background: #727272;
+}
+
 .user-bar {
 	display: flex;
 	padding-top: 10px;
