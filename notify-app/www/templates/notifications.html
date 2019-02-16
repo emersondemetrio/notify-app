@@ -1,3 +1,33 @@
-<a href="#/">back</a>
+<ion-view>
+	<ion-content scroll="false">
+		<a href="#/" class="pre-icon">
+			<img src="/img/back.png" class="icon" alt="Back">
+		</a>
 
-<pre><code>{{ notifications }}</code></pre>
+		<div id="notifications-modal" class="custom-modal">
+			<div class="custom-modal-content">
+				<span class="close">&times;</span>
+				<div ng-click="expandNotification()">
+					<span>
+						{{ notification.receivedOn }} minutes ago
+					</span>
+
+					<h3 ng-bind-html="notification.title"></h3>
+					<p ng-if="!modal.isExpanded" ng-bind-html="notification.excerpt"></p>
+					<p ng-if="modal.isExpanded" ng-bind-html="notification.full"></p>
+					<div ng-if="modal.isExpanded">
+						<div class="notification-pre-image">
+							<img ng-src="{{ notification.image }}" alt="Notification Image">
+						</div>
+
+						<button
+							ng-click="closeNotification(notification.id)"
+							class="notification-button">
+							Got It
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

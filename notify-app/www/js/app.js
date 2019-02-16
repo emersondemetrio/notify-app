@@ -1,5 +1,7 @@
 const notifyApp = angular.module('NotificationsApp', [
-	'ionic',
+	'ngAnimate',
+	'ngSanitize',
+	'ionic'
 ]);
 
 notifyApp
@@ -13,3 +15,8 @@ notifyApp
 			}
 		});
 	});
+
+notifyApp
+	.constant('APP_STORAGE_KEY', 'youper-test-notifications')
+	.constant('REMOTE_NOTIFICATIONS_URL', 'https://fathomless-mesa-23619.herokuapp.com')
+	.constant('REMOTE_UPLOAD_URL', 'https://fathomless-mesa-23619.herokuapp.com/api/images');
