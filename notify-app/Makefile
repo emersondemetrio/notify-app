@@ -7,5 +7,5 @@ start-local:
 install:
 	rm -rf node_modules && npm install
 
-build-android:
+android-build:
 	ionic cordova build --release android

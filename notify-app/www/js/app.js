@@ -1,5 +1,7 @@
 const notifyApp = angular.module('NotificationsApp', [
-	'ionic',
+	'ngAnimate',
+	'ngSanitize',
+	'ionic'
 ]);
 
 notifyApp

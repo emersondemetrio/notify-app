@@ -1,17 +1,22 @@
 const IndexCtrl = function (
 	$scope,
-	$location,
+	$state,
 	notificationsService) {
 
-	$scope.notifications = notificationsService.get().filter(n => !n.read);
+	$scope.notifications = notificationsService.get();
+
 	notificationsService.subscribe(notifications => {
 		$scope.notifications = notifications;
 		$scope.$apply();
 	});
 
-	$scope.navigate = (path) => {
-		$location.path(`/${path}`);
-	}
+	$scope.navigate = () => {
+		$state.transitionTo('notifications', null, {
+			reload: true,
+			inherit: false,
+			notify: true
+		});
+	};
 }
 
 notifyApp

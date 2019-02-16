@@ -1,6 +1,6 @@
 const storage = {
 	set: (key, value) => localStorage.setItem(key, value),
-	get: key => localStorage.get(key)
+	get: key => localStorage.getItem(key)
 };
 
 notifyApp
@@ -23,14 +23,22 @@ notifyApp
 				});
 			},
 
-			get: () => JSON.parse(localStorage.getItem(storageKey)) || [],
+			get: () => {
+				const notifications = storage.get(storageKey);
+				if (notifications && notifications !== null) {
+					return JSON.parse(notifications).filter(n => !n.read);
+				}
+				return [];
+			},
 
 			setRead: id => storage.set(
 				storageKey,
-				JSON.stringify(
-					JSON.parse(localStorage.get(storageKey))
-						.filter(n => n.id !== id)
-				)
+				JSON
+					.stringify(
+						JSON
+							.parse(storage.get(storageKey))
+							.filter(n => n.id !== id)
+					)
 			)
 		}
 	});
