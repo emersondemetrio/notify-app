@@ -1,6 +1,7 @@
 all: start-local
 
-run:
+start-local:
+	@echo "Testing"
 	ionic serve
 
 install:

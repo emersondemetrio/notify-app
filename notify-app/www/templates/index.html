@@ -8,7 +8,7 @@
 					alt="User">
 			</div>
 
-			<a class="pre-icon" href="#/notifications">
+			<div class="pre-icon" href="#/notifications">
 				<img
 					class="icon icon-right"
 					src="/img/notification.png"
@@ -20,8 +20,8 @@
 					src="/img/notification-in.png"
 					alt="Notification In"
 					ng-show="notifications.length > 0"
-					ng-click="uploadUserPicture()">
-			</a>
+					ng-click="navigate('notifications')">
+			</div>
 		</div>
 	</ion-content>
 </ion-view>

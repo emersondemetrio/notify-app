@@ -1,8 +1,12 @@
-const NotificationsCtrl = function ($scope, $interval) {
-	$scope.notifications = [{
-		id: 1,
-		message: 'Hello'
-	}];
+const NotificationsCtrl = function (
+	$scope,
+	notificationsService) {
+
+	$scope.notifications = notificationsService.get().filter(n => !n.read);
+	notificationsService.subscribe(notifications => {
+		$scope.notifications = notifications;
+		$scope.$apply();
+	});
 }
 
 notifyApp

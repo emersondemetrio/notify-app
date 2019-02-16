@@ -1,14 +1,17 @@
-const IndexCtrl = function ($scope, $interval) {
-	$scope.notifications = [];
+const IndexCtrl = function (
+	$scope,
+	$location,
+	notificationsService) {
 
-	// $interval(() => {
-	// 	if ($scope.notifications.length > 0)
-	// 		$scope.notifications = []
-	// 	else
-	// 		$scope.notifications = [1]
+	$scope.notifications = notificationsService.get().filter(n => !n.read);
+	notificationsService.subscribe(notifications => {
+		$scope.notifications = notifications;
+		$scope.$apply();
+	});
 
-	// 	console.log($scope.notifications)
-	// }, 1000)
+	$scope.navigate = (path) => {
+		$location.path(`/${path}`);
+	}
 }
 
 notifyApp
