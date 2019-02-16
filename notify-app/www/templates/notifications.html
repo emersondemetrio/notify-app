@@ -4,9 +4,19 @@
 			<img src="/img/back.png" class="icon" alt="Back">
 		</a>
 
+		<div style="width: 300px; height: 300px">
+			<a href="#/user" class="pre-icon">
+				users
+			</a>
+		</div>
+
 		<div id="notifications-modal" class="custom-modal">
 			<div class="custom-modal-content">
-				<span class="close">&times;</span>
+				<span
+					class="close"
+					ng-click="closeNotification(notification.id)">&times;
+				</span>
+
 				<div ng-click="expandNotification()">
 					<span>
 						{{ notification.receivedOn }} minutes ago
