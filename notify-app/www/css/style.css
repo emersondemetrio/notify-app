@@ -1,1 +1,26 @@
-/* Empty. Add your own CSS if you like */
+ion-content {
+	background: #727272;
+}
+
+.user-bar {
+	display: flex;
+	padding-top: 10px;
+}
+
+.pre-icon {
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.icon {
+	width: 50px;
+}
+
+.icon-left {
+	margin-right: 50%;
+}
+
+.icon-right {
+	margin-left: 50%;
+}

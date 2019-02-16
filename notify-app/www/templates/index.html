@@ -1,0 +1,27 @@
+<ion-view>
+	<ion-content>
+		<div class="user-bar">
+			<div class="pre-icon">
+				<img
+					class="icon icon-left"
+					src="/img/user.png"
+					alt="User">
+			</div>
+
+			<a class="pre-icon" href="#/notifications">
+				<img
+					class="icon icon-right"
+					src="/img/notification.png"
+					alt="Notification"
+					ng-show="notifications.length === 0">
+
+				<img
+					class="icon icon-right"
+					src="/img/notification-in.png"
+					alt="Notification In"
+					ng-show="notifications.length > 0"
+					ng-click="uploadUserPicture()">
+			</a>
+		</div>
+	</ion-content>
+</ion-view>
