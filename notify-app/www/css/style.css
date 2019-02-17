@@ -30,11 +30,14 @@ ion-content {
 }
 
 .notification-pre-image {
+	height: 100px;
+	padding: 10px;
 	background: #b6b6b6;
 }
 
-.notification-button {
-	background: #fab247;
+.notification-pre-button {
+	margin-top: 30px;
+	text-align: center;
 }
 
 /** modal **/

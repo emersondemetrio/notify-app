@@ -40,11 +40,8 @@ const NotificationsCtrl = function (
 	}
 
 	$scope.closeNotification = (notificationId) => {
-		console.log("notificationId", notificationId)
 		notificationsService.setRead(notificationId);
 		modalCtrl.close();
-		// $scope.reset();
-		// $location.path('/');
 	}
 }
 
