@@ -53,6 +53,21 @@ ion-content {
 	color: #fff;
 }
 
+#loading-div {
+	width: 100%;
+	height: 100vh;
+	text-align: center;
+	background: #efd02f;
+	position: absolute;
+	top: 0;
+	padding-top: 150px;
+}
+
+svg path,
+svg rect{
+	fill: #FF6700;
+}
+
 /** modal **/
 
 .custom-modal {
