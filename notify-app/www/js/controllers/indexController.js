@@ -6,6 +6,8 @@ const IndexCtrl = function (
 	NotificationsService) {
 
 	$scope.avatarUrl = null;
+	$scope.isLoading = false;
+
 	$scope.unsubscribed = (
 		StorageService.getJson('subscribeState') ?
 			StorageService.getJson('subscribeState').unsubscribed
@@ -47,6 +49,7 @@ const IndexCtrl = function (
 	}
 
 	$scope.uploadAvatar = function (files) {
+		$scope.isLoading = true;
 		var formData = new FormData();
 
 		formData.append('image', files[0]);
@@ -55,9 +58,11 @@ const IndexCtrl = function (
 			.success(function(res) {
 				StorageService.set('avatar', res.resp.url);
 				$scope.avatarUrl = StorageService.get('avatar');
+				$scope.isLoading = false;
 			})
 			.error(function(err) {
 				alert('Unable to upload avatar.');
+				$scope.isLoading = false;
 			});
 	}
 }
