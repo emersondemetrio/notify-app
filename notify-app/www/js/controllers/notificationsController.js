@@ -1,13 +1,13 @@
 const NotificationsCtrl = function (
 	$scope,
-	notificationsService) {
+	NotificationsService) {
 
 	$scope.modal = {
 		isExpanded: false,
 		element: document.getElementById('notifications-modal')
 	};
 
-	$scope.notifications = notificationsService.get();
+	$scope.notifications = NotificationsService.get();
 	$scope.notification = {};
 
 	const modalCtrl = {
@@ -34,17 +34,14 @@ const NotificationsCtrl = function (
 		modalCtrl.expand();
 	}
 
-	$scope.reset = function() {
+	$scope.reset = function () {
 		$scope.notifications = [];
 		$scope.notification = {};
 	}
 
 	$scope.closeNotification = (notificationId) => {
-		console.log("notificationId", notificationId)
-		notificationsService.setRead(notificationId);
+		NotificationsService.setRead(notificationId);
 		modalCtrl.close();
-		// $scope.reset();
-		// $location.path('/');
 	}
 }
 

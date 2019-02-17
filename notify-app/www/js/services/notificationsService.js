@@ -1,14 +1,10 @@
-const storage = {
-	set: (key, value) => localStorage.setItem(key, value),
-	get: key => localStorage.getItem(key)
-};
-
 notifyApp
-	.factory('notificationsService', (
+	.factory('NotificationsService', (
 		$rootScope,
-		APP_STORAGE_KEY,
-		REMOTE_NOTIFICATIONS_URL) => {
-		const storageKey = `${APP_STORAGE_KEY}-notifications`;
+		StorageService,
+		REMOTE_NOTIFICATIONS_URL
+	) => {
+		const storageKey = 'notifications';
 
 		return {
 			subscribe: (callback) => {
@@ -18,27 +14,23 @@ notifyApp
 						n.read = false;
 						return n;
 					});
-					storage.set(storageKey, JSON.stringify(parsed))
+
+					StorageService.setJson(storageKey, parsed);
 					$rootScope.$emit('notificationsReceived', callback(parsed));
 				});
 			},
 
 			get: () => {
-				const notifications = storage.get(storageKey);
+				const notifications = StorageService.get(storageKey);
 				if (notifications && notifications !== null) {
 					return JSON.parse(notifications).filter(n => !n.read);
 				}
 				return [];
 			},
 
-			setRead: id => storage.set(
+			setRead: id => StorageService.setJson(
 				storageKey,
-				JSON
-					.stringify(
-						JSON
-							.parse(storage.get(storageKey))
-							.filter(n => n.id !== id)
-					)
+				StorageService.getJson(storageKey).filter(n => n.id !== id)
 			)
 		}
 	});

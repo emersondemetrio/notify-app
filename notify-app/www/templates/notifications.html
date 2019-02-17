@@ -4,9 +4,17 @@
 			<img src="/img/back.png" class="icon" alt="Back">
 		</a>
 
+		<div class="no-notifications" ng-if="notifications.length === 0">
+			No notifications
+		</div>
+
 		<div id="notifications-modal" class="custom-modal">
 			<div class="custom-modal-content">
-				<span class="close">&times;</span>
+				<span
+					class="close"
+					ng-click="closeNotification(notification.id)">&times;
+				</span>
+
 				<div ng-click="expandNotification()">
 					<span>
 						{{ notification.receivedOn }} minutes ago
@@ -17,14 +25,18 @@
 					<p ng-if="modal.isExpanded" ng-bind-html="notification.full"></p>
 					<div ng-if="modal.isExpanded">
 						<div class="notification-pre-image">
-							<img ng-src="{{ notification.image }}" alt="Notification Image">
+							<img
+								alt="Notification Image"
+								ng-src="{{ notification.image }}">
 						</div>
 
+					<div class="notification-pre-button">
 						<button
-							ng-click="closeNotification(notification.id)"
-							class="notification-button">
+							class="button button-energized"
+							ng-click="closeNotification(notification.id)">
 							Got It
 						</button>
+					</div>
 					</div>
 				</div>
 			</div>
