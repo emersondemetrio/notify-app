@@ -1,8 +1,5 @@
 notifyApp
-	.factory('UploadsService', (
-		REMOTE_UPLOAD_URL,
-		$http
-	) => {
+	.factory('UploadsService', function (REMOTE_UPLOAD_URL, $http) {
 
 		function upload(formData) {
 			var options = {

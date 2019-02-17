@@ -1,4 +1,4 @@
-const notifyApp = angular.module('NotificationsApp', [
+var notifyApp = angular.module('NotificationsApp', [
 	'ngAnimate',
 	'ngSanitize',
 	'ngCordova',
