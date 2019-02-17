@@ -6,7 +6,8 @@
 					ng-if="avatarUrl === null"
 					class="icon icon-left"
 					src="/img/user.png"
-					alt="User">
+					alt="User"
+					ng-click="propagateClickTo('file')">
 
 				<img
 					ng-if="avatarUrl !== null"

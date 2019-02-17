@@ -30,8 +30,8 @@ ion-content {
 }
 
 .notification-pre-image {
-	height: 100px;
-	padding: 10px;
+	height: 140px;
+	text-align: center;
 	background: #b6b6b6;
 }
 

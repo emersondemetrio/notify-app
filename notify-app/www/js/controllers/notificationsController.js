@@ -1,9 +1,6 @@
 const NotificationsCtrl = function (
 	$scope,
-	$state,
-	NotificationsService,
-	StorageService,
-	UploadsService) {
+	NotificationsService) {
 
 	$scope.modal = {
 		isExpanded: false,
@@ -45,31 +42,6 @@ const NotificationsCtrl = function (
 	$scope.closeNotification = (notificationId) => {
 		NotificationsService.setRead(notificationId);
 		modalCtrl.close();
-	}
-
-	$scope.propagateClickTo = function (target) {
-		setTimeout(() => {
-			document.getElementById(target).click();
-		}, 0);
-	}
-
-	$scope.uploadAvatar = function (files) {
-		var formData = new FormData();
-
-		formData.append('image', files[0]);
-		UploadsService
-			.upload(formData)
-			.success(function(res) {
-				StorageService.set('avatar', res.resp.url);
-				$state.transitionTo('index', null, {
-					reload: true,
-					inherit: false,
-					notify: true
-				});
-			})
-			.error(function(err) {
-				alert('Unable to upload avatar.');
-			});
 	}
 }
 

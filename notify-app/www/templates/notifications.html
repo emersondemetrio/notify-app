@@ -25,18 +25,9 @@
 					<p ng-if="modal.isExpanded" ng-bind-html="notification.full"></p>
 					<div ng-if="modal.isExpanded">
 						<div class="notification-pre-image">
-							<input
-								id="file"
-								type="file"
-								name="image"
-								accept="image/*"
-								ng-hide="true"
-								onchange="angular.element(this).scope().uploadAvatar(this.files)" />
-
 							<img
 								alt="Notification Image"
-								ng-src="{{ notification.image }}"
-								ng-click="propagateClickTo('file')">
+								ng-src="{{ notification.image }}">
 						</div>
 
 					<div class="notification-pre-button">
