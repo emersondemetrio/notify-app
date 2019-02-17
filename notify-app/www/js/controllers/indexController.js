@@ -1,13 +1,20 @@
 const IndexCtrl = function (
 	$scope,
 	$state,
-	notificationsService) {
+	UploadsService,
+	StorageService,
+	NotificationsService) {
 
-	$scope.unsubscribed = false;
+	$scope.avatarUrl = null;
+	$scope.unsubscribed = (
+		StorageService.getJson('subscribeState') ?
+			StorageService.getJson('subscribeState').unsubscribed
+			: false
+		);
 
-	$scope.notifications = notificationsService.get();
+	$scope.notifications = NotificationsService.get();
 
-	notificationsService.subscribe(notifications => {
+	NotificationsService.subscribe(notifications => {
 		if(!$scope.unsubscribed) {
 			$scope.notifications = notifications;
 		} else {
@@ -18,13 +25,41 @@ const IndexCtrl = function (
 	});
 
 	$scope.navigate = () => {
-		$scope.unsubscribed = true;
+		StorageService.setJson('subscribeState', {
+			unsubscribed: true
+		});
+		$scope.notifications = [];
 		$state.transitionTo('notifications', null, {
 			reload: true,
 			inherit: false,
 			notify: true
 		});
 	};
+
+	if(StorageService.get('avatar')) {
+		$scope.avatarUrl = StorageService.get('avatar');
+	}
+
+	$scope.propagateClickTo = function (target) {
+		setTimeout(() => {
+			document.getElementById(target).click();
+		}, 0);
+	}
+
+	$scope.uploadAvatar = function (files) {
+		var formData = new FormData();
+
+		formData.append('image', files[0]);
+		UploadsService
+			.upload(formData)
+			.success(function(res) {
+				StorageService.set('avatar', res.resp.url);
+				$scope.avatarUrl = StorageService.get('avatar');
+			})
+			.error(function(err) {
+				alert('Unable to upload avatar.');
+			});
+	}
 }
 
 notifyApp

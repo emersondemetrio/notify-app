@@ -3,12 +3,28 @@
 		<div class="user-bar">
 			<div class="pre-icon">
 				<img
+					ng-if="avatarUrl === null"
 					class="icon icon-left"
 					src="/img/user.png"
 					alt="User">
+
+				<img
+					ng-if="avatarUrl !== null"
+					class="icon icon-left avatar"
+					ng-src="{{ avatarUrl }}"
+					ng-click="propagateClickTo('file')"
+					alt="User">
+
+				<input
+					id="file"
+					type="file"
+					name="image"
+					accept="image/*"
+					ng-hide="true"
+					onchange="angular.element(this).scope().uploadAvatar(this.files)" />
 			</div>
 
-			<div class="pre-icon">
+			<div class="pre-icon" ng-click="navigate()">
 				<img
 					class="icon icon-right"
 					src="/img/notification.png"
@@ -19,8 +35,7 @@
 					class="icon icon-right"
 					src="/img/notification-in.png"
 					alt="Notification In"
-					ng-show="notifications.length > 0"
-					ng-click="navigate()">
+					ng-show="notifications.length > 0">
 			</div>
 		</div>
 	</ion-content>

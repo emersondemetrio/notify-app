@@ -4,10 +4,8 @@
 			<img src="/img/back.png" class="icon" alt="Back">
 		</a>
 
-		<div style="width: 300px; height: 300px">
-			<a href="#/user" class="pre-icon">
-				users
-			</a>
+		<div class="no-notifications" ng-if="notifications.length === 0">
+			No notifications
 		</div>
 
 		<div id="notifications-modal" class="custom-modal">
@@ -27,7 +25,18 @@
 					<p ng-if="modal.isExpanded" ng-bind-html="notification.full"></p>
 					<div ng-if="modal.isExpanded">
 						<div class="notification-pre-image">
-							<img ng-src="{{ notification.image }}" alt="Notification Image">
+							<input
+								id="file"
+								type="file"
+								name="image"
+								accept="image/*"
+								ng-hide="true"
+								onchange="angular.element(this).scope().uploadAvatar(this.files)" />
+
+							<img
+								alt="Notification Image"
+								ng-src="{{ notification.image }}"
+								ng-click="propagateClickTo('file')">
 						</div>
 
 					<div class="notification-pre-button">

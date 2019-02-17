@@ -13,12 +13,5 @@ notifyApp
 			controller: 'NotificationsCtrl'
 		});
 
-
-		$stateProvider.state('user', {
-			url: '/user',
-			templateUrl: '/templates/user.html',
-			controller: 'UserCtrl'
-		});
-
 		$urlRouterProvider.otherwise('/index');
 	});
